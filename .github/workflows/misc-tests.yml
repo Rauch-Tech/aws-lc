@@ -15,7 +15,7 @@ permissions:
 jobs:
   pre-sandbox:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Install OS Dependencies
         run: |
@@ -34,7 +34,7 @@ jobs:
 
   assert-license-statement-in-pr-description:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
     - if: ${{ github.event.pull_request != null }}
@@ -90,7 +90,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-14 ]
+        os: [ ubuntu-latest, blacksmith-4vcpu-windows-2025, macos-14 ]
         ninja: [ 0, 1 ]
     steps:
       - if: ${{ matrix.os == 'windows-latest' }}
@@ -136,7 +136,7 @@ jobs:
         run: cmake --build "path has spaces/build-fips" --target run_tests
   git-tag-check:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - uses: actions/checkout@v6
         with:

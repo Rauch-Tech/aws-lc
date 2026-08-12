@@ -15,7 +15,7 @@ permissions:
 jobs:
   libssh2:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Install OS Dependencies
         run: |
@@ -27,7 +27,7 @@ jobs:
           ./tests/ci/integration/run_libssh2_integration.sh
   libevent:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Install OS Dependencies
         run: |
@@ -40,7 +40,7 @@ jobs:
           ./tests/ci/integration/run_libevent_integration.sh
   librdkafka:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Install OS Dependencies
         run: |
@@ -53,7 +53,7 @@ jobs:
           ./tests/ci/integration/run_librdkafka_integration.sh
   socat:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     env:
       SHELL: /usr/bin/bash
     steps:
@@ -67,7 +67,7 @@ jobs:
           ./tests/ci/integration/run_socat_integration.sh
   rust-openssl:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Checkout aws-lc
         uses: actions/checkout@v6
@@ -92,7 +92,7 @@ jobs:
           ./tests/ci/integration/run_rust_openssl_integration.sh
   apache-httpd:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     name: Apache httpd
     steps:
       - name: Install OS Dependencies
