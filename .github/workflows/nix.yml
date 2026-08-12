@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   nixflake:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - uses: actions/checkout@v6
       - uses: cachix/install-nix-action@v31
@@ -19,7 +19,7 @@ jobs:
       - run: nix build
       - run: nix flake check
   nixfmt:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - uses: actions/checkout@v6
       - uses: nixbuild/nix-quick-install-action@v34
