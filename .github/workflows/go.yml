@@ -19,7 +19,7 @@ jobs:
     env:
       GOROOT: "/usr/local/go"
       GO_ARCHIVE: "go1.20.linux-amd64.tar.gz"
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Install OS Dependencies
         run: |

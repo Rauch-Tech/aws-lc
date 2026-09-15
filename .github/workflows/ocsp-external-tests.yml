@@ -14,7 +14,7 @@ permissions:
 jobs:
   ocsp-external:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v6

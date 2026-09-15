@@ -22,7 +22,7 @@ permissions:
 jobs:
   # MacOS and Windows GHA runners are more expensive, so we do a sanity test run before proceeding.
   sanity-test-run:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     env:
       AWS_LC_SSL_TEST_RUNNER_PEEK_ROUNDS: 100
     steps:
@@ -43,7 +43,7 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - "macos-15-intel"
+          - "blacksmith-6vcpu-macos-15"
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-go@v6
@@ -61,7 +61,7 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - "macos-15-intel"
+          - "blacksmith-6vcpu-macos-15"
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-go@v6
@@ -79,7 +79,7 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - "macos-14"
+          - "blacksmith-6vcpu-macos-15"
           - "macos-15"
     steps:
       - uses: actions/checkout@v6
@@ -98,7 +98,7 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - "windows-latest"
+          - "blacksmith-4vcpu-windows-2025"
           - "windows-11-arm"
     steps:
       - uses: actions/checkout@v6
@@ -125,7 +125,7 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - "macos-14"
+          - "blacksmith-6vcpu-macos-15"
           - "macos-15"
         clang:
           - 20
@@ -180,7 +180,7 @@ jobs:
           - "clang19"
           - "clang20"
           - "clang21"
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     container:
       image: ghcr.io/mattkretz/cplusplus-ci/${{ matrix.compiler }}
     steps:
@@ -308,7 +308,7 @@ jobs:
     if: github.repository_owner == 'aws'
     needs: [sanity-test-run]
     name: arm64 - gcc${{ matrix.gcc_version }} - ${{ (matrix.fips == 1 && 'FIPS') || 'non-FIPS' }}
-    runs-on: ubuntu-24.04-arm
+    runs-on: blacksmith-4vcpu-ubuntu-2404-arm
     env:
       GOFLAGS: "-buildvcs=false"
     container:
@@ -345,7 +345,7 @@ jobs:
     if: github.repository_owner == 'aws'
     needs: [sanity-test-run]
     name: arm64 - clang${{ matrix.clang_version }} - ${{ (matrix.fips == 1 && 'FIPS') || 'non-FIPS' }}
-    runs-on: ubuntu-24.04-arm
+    runs-on: blacksmith-4vcpu-ubuntu-2404-arm
     env:
       GOFLAGS: "-buildvcs=false"
     container:
@@ -379,7 +379,7 @@ jobs:
     if: github.repository_owner == 'aws'
     needs: [sanity-test-run]
     name: arm64 - clang${{ matrix.clang_version }} - ${{ (matrix.fips == 1 && 'FIPS') || 'non-FIPS' }}
-    runs-on: ubuntu-24.04-arm
+    runs-on: blacksmith-4vcpu-ubuntu-2404-arm
     env:
       GOFLAGS: "-buildvcs=false"
     container:
@@ -417,7 +417,7 @@ jobs:
     if: github.repository_owner == 'aws'
     needs: [sanity-test-run]
     name: arm64 - clang ${{ matrix.clang_version }} - ${{ (matrix.fips == 1 && 'FIPS') || 'non-FIPS' }}
-    runs-on: ubuntu-24.04-arm
+    runs-on: blacksmith-4vcpu-ubuntu-2404-arm
     env:
       GOFLAGS: "-buildvcs=false"
     container:
@@ -451,7 +451,7 @@ jobs:
     if: github.repository_owner == 'aws'
     needs: [sanity-test-run]
     name: arm64 - clang ${{ matrix.clang_version }} - ${{ (matrix.fips == 1 && 'FIPS') || 'non-FIPS' }}
-    runs-on: ubuntu-24.04-arm
+    runs-on: blacksmith-4vcpu-ubuntu-2404-arm
     env:
       GOFLAGS: "-buildvcs=false"
     container:
@@ -492,7 +492,7 @@ jobs:
         fips:
           - "0"
           - "1"
-    runs-on: ubuntu-24.04
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-go@v6
@@ -533,7 +533,7 @@ jobs:
           - "gcc15"
           - "clang19"
           - "clang20"
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     container:
       image: ghcr.io/mattkretz/cplusplus-ci/${{ matrix.compiler }}
     steps:
@@ -564,7 +564,7 @@ jobs:
 
   OpenBSD:
     needs: [sanity-test-run]
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     name: OpenBSD ${{ matrix.version }} (${{ matrix.arch }}) test
     strategy:
       fail-fast: false
@@ -619,7 +619,7 @@ jobs:
             EOF
   gcc-4_8:
     needs: [sanity-test-run]
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     env:
       DOCKER_BUILDKIT: 1
     steps:
@@ -647,7 +647,7 @@ jobs:
             --build-arg CC=clang --build-arg CXX=clang++,
             --build-arg CC=gcc --build-arg CXX=g++,
           ]
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     env:
       DOCKER_BUILDKIT: 1
     steps:
@@ -693,7 +693,7 @@ jobs:
     if: github.repository_owner == 'aws'
     needs: [sanity-test-run]
     name: FreeBSD ${{ matrix.version }} (${{ matrix.arch }}) test
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     strategy:
       fail-fast: false
       matrix:
@@ -729,7 +729,7 @@ jobs:
     if: github.repository_owner == 'aws'
     needs: [sanity-test-run]
     name: NetBSD ${{ matrix.version }} (${{ matrix.arch }}) test
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     strategy:
       fail-fast: false
       matrix:

@@ -17,7 +17,7 @@ jobs:
   # Full bindings pre-generation test on Linux (x86_64-unknown-linux-gnu)
   aws-lc-rs-linux:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - uses: actions/checkout@v6
         with:
@@ -82,7 +82,7 @@ jobs:
   # Full bindings pre-generation test on macOS (aarch64-apple-darwin)
   aws-lc-rs-macos:
     if: github.repository_owner == 'aws'
-    runs-on: macos-latest
+    runs-on: blacksmith-6vcpu-macos-15
     steps:
       - uses: actions/checkout@v6
         with:
@@ -151,7 +151,7 @@ jobs:
   aws-lc-rs-ios-aarch64:
     if: github.repository_owner == 'aws'
     name: aws-lc-rs iOS aarch64 cross-compilation
-    runs-on: macos-14
+    runs-on: blacksmith-6vcpu-macos-15
     steps:
       - uses: actions/checkout@v6
         with:
@@ -179,7 +179,7 @@ jobs:
   # Full bindings pre-generation test on Windows (x86_64-pc-windows-msvc)
   aws-lc-rs-windows:
     if: github.repository_owner == 'aws'
-    runs-on: windows-latest
+    runs-on: blacksmith-4vcpu-windows-2025
     steps:
       - uses: actions/checkout@v6
         with:
@@ -254,7 +254,7 @@ jobs:
   # Cross-compile to Windows from Linux using cargo-xwin (clang-cl + lld-link)
   aws-lc-rs-windows-cross:
     if: github.repository_owner == 'aws'
-    runs-on: ubuntu-24.04
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     name: aws-lc-rs-windows-cross (${{ matrix.name }})
     strategy:
       fail-fast: false
@@ -373,7 +373,7 @@ jobs:
           - os: macos-latest
             name: macos-prefix
             prefix: AWSLC_PREFIX
-          - os: windows-latest
+          - os: blacksmith-4vcpu-windows-2025
             name: windows
           - os: ubuntu-latest
             name: linux-no-ssl
